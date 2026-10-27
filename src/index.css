@@ -1,0 +1,86 @@
+@import './fonts/fonts.css';
+
+:root {
+  /* Dimensões da prancheta do Figma (cada tela ocupa a seção inteira). */
+  --stage-w: 1620;
+  --stage-h: 2160;
+
+  /* Paleta amostrada das artes do Figma. */
+  --c-ink: #ffffff;
+  --c-deep: #020612;
+  --c-mid: #0d2142;
+  --c-base: #14264a;
+
+  --font-sans: 'Aktiv Grotesk', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  color-scheme: dark;
+  font-family: var(--font-sans);
+  color: var(--c-ink);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--c-deep);
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+}
+
+p,
+h1,
+h2 {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+img {
+  display: block;
+}
+
+/* Rótulo acessível para elementos cuja legenda está embutida na arte. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

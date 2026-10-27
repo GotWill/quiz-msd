@@ -1,0 +1,86 @@
+/*
+ * Coordenadas em pixels do Figma (frame 1620x2160) — o palco faz o escalonamento.
+ *
+ * As imagens usam `object-fit: fill`: cada arte é exportada exatamente no
+ * tamanho da caixa do seu nó, então esticar é a correspondência certa. Com
+ * `cover`, qualquer diferença de proporção no arquivo faz o navegador cortar
+ * as bordas da arte em silêncio.
+ */
+
+.thanks {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.thanks__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.thanks__title {
+  position: absolute;
+  top: 583px;
+  left: 50%;
+  width: 1307px;
+  transform: translateX(-50%);
+  font-size: 125px;
+  font-weight: 700;
+  line-height: 150px;
+  text-align: center;
+}
+
+.thanks__cta {
+  position: absolute;
+  top: 847px;
+  left: 118px;
+  width: 1384px;
+  height: 400px;
+  cursor: pointer;
+  transition: transform 220ms ease;
+}
+
+.thanks__cta img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.thanks__cta:hover {
+  transform: scale(1.015);
+}
+
+.thanks__cta:active {
+  transform: scale(0.99);
+}
+
+.thanks__cta:focus-visible {
+  outline: 4px solid var(--c-ink);
+  outline-offset: -62px;
+  border-radius: 200px;
+}
+
+/* Único bloco de texto corrido do quiz: as quebras caem naturalmente
+   dentro da caixa, e não em pontos fixos como nas demais telas. */
+.thanks__references {
+  position: absolute;
+  top: 1669px;
+  left: 232px;
+  width: 1156px;
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 30px;
+  text-align: justify;
+}
+
+.thanks__references strong {
+  font-weight: 700;
+}
+
+.thanks__references cite {
+  font-style: italic;
+}

@@ -1,0 +1,101 @@
+/*
+ * Coordenadas em pixels do Figma (frame 1620x2160) — o palco faz o escalonamento.
+ *
+ * As imagens usam `object-fit: fill`: cada arte é exportada exatamente no
+ * tamanho da caixa do seu nó, então esticar é a correspondência certa. Com
+ * `cover`, qualquer diferença de proporção no arquivo faz o navegador cortar
+ * as bordas da arte em silêncio.
+ */
+
+.question {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.question__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.question__eyebrow {
+  position: absolute;
+  left: 222px;
+  width: 1043px;
+  height: 86px;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 86px;
+}
+
+.question__text {
+  position: absolute;
+  left: 222px;
+  width: 1191px;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 73.5px;
+}
+
+.question__options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.question__option {
+  position: absolute;
+  left: 118px;
+  width: 1384px;
+  height: 400px;
+}
+
+.question__option-button {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 220ms ease;
+}
+
+.question__option-button img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.question__option-button:hover {
+  transform: scale(1.015);
+}
+
+.question__option-button:active {
+  transform: scale(0.99);
+}
+
+.question__option-button:focus-visible {
+  outline: 4px solid var(--c-ink);
+  outline-offset: -62px;
+  border-radius: 200px;
+}
+
+.question__option-label {
+  position: absolute;
+  top: 50%;
+  left: 311px;
+  width: 939px;
+  transform: translateY(-50%);
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 56px;
+  /* `\n` no rótulo marca a quebra de linha definida no design. */
+  white-space: pre-line;
+}

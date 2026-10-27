@@ -1,0 +1,76 @@
+/*
+ * Coordenadas em pixels do Figma (frame 1620x2160) — o palco faz o escalonamento.
+ *
+ * As imagens usam `object-fit: fill`: cada arte é exportada exatamente no
+ * tamanho da caixa do seu nó, então esticar é a correspondência certa. Com
+ * `cover`, qualquer diferença de proporção no arquivo faz o navegador cortar
+ * as bordas da arte em silêncio.
+ */
+
+.loading {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.loading__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.loading__title {
+  position: absolute;
+  top: 729px;
+  left: 50%;
+  width: 1307px;
+  height: 154px;
+  transform: translateX(-50%);
+  font-size: 125px;
+  font-weight: 700;
+  line-height: 154px;
+  text-align: center;
+}
+
+/* Cápsula vazia com o brilho — a arte já inclui a borda e o halo. */
+.loading__track {
+  position: absolute;
+  top: 876px;
+  left: 229px;
+  width: 1166.24px;
+  height: 245.7px;
+  pointer-events: none;
+}
+
+/*
+ * Área útil interna da cápsula: recorta o preenchimento, para que a ponta
+ * direita acompanhe a curva da trilha ao chegar em 100%.
+ */
+.loading__bar {
+  position: absolute;
+  top: 930.39px;
+  left: 297.63px;
+  width: 1025.64px;
+  height: 134.12px;
+  border-radius: 67.06px;
+  overflow: hidden;
+}
+
+/*
+ * Degradê vertical idêntico ao do vetor do Figma
+ * (#79a8d3 → branco → #79a8d3, recortado pela altura da barra).
+ */
+.loading__fill {
+  width: 0;
+  height: 100%;
+  border-radius: 67.06px 0 0 67.06px;
+  background: linear-gradient(
+    180deg,
+    #b9d1e8 0%,
+    #ffffff 38.55%,
+    #8fb6da 100%
+  );
+}

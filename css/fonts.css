@@ -1,0 +1,56 @@
+/* Aktiv Grotesk — família tipográfica do projeto.
+
+   Só as faces efetivamente usadas pelo CSS das telas são declaradas aqui:
+   Regular (400), Bold (700) e XBold (800) nos títulos e textos, mais
+   Light (300) e LightItalic (300) no bloco de referências e no aviso legal.
+
+   Os .woff2 são subsets: as faces originais vêm em OpenType completo
+   (~250 KB cada, mais de mil glifos) e foram reduzidas ao conjunto de
+   caracteres do português, o que levou as cinco de 1.243 KB para 79 KB.
+
+   Para trocar de fonte ou precisar de um caractere fora do subset, os .otf
+   originais e o script que gera os .woff2 (`scripts/build-fonts.mjs`, com
+   `subset-font`) estão no commit 6c8e0a8 — recupere de lá.
+
+   Com `font-synthesis: none` no base.css, um peso não declarado não dá erro:
+   ele cai silenciosamente na face mais próxima. */
+
+@font-face {
+  font-family: 'Aktiv Grotesk';
+  src: url('../fonts/AktivGrotesk-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aktiv Grotesk';
+  src: url('../fonts/AktivGrotesk-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aktiv Grotesk';
+  src: url('../fonts/AktivGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aktiv Grotesk';
+  src: url('../fonts/AktivGrotesk-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aktiv Grotesk';
+  src: url('../fonts/AktivGrotesk-XBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,597 @@
+/*
+ * Folha de estilo do quiz, na ordem em que as coisas aparecem na tela:
+ * primeiro as bases (tokens, reset, utilitários), depois o palco que escala
+ * tudo e, por fim, uma seção por tela, na sequência do fluxo.
+ *
+ * As seções das telas são escritas em COORDENADAS DE PIXEL DO FIGMA
+ * (frame 1620x2160) — o palco faz o escalonamento, então as medidas aqui são
+ * literalmente as do design, sem conversão no caminho.
+ *
+ * As imagens usam `object-fit: fill`: cada arte é exportada exatamente no
+ * tamanho da caixa do seu nó, então esticar é a correspondência certa. Com
+ * `cover`, qualquer diferença de proporção no arquivo faz o navegador cortar
+ * as bordas da arte em silêncio.
+ *
+ * As faces tipográficas ficam em `fonts.css`, separadas porque são declaração
+ * de recurso, não layout.
+ */
+
+/* =========================================================================
+   Base — tokens, reset e utilitários
+   ========================================================================= */
+
+:root {
+  /* Dimensões da prancheta do Figma (cada tela ocupa a seção inteira). */
+  --stage-w: 1620;
+  --stage-h: 2160;
+
+  /* Paleta amostrada das artes do Figma. */
+  --c-ink: #ffffff;
+  --c-deep: #020612;
+  --c-mid: #0d2142;
+  --c-base: #14264a;
+
+  --font-sans: 'Aktiv Grotesk', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  color-scheme: dark;
+  font-family: var(--font-sans);
+  color: var(--c-ink);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--c-deep);
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+}
+
+p,
+h1,
+h2 {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+img {
+  display: block;
+}
+
+/* Rótulo acessível para elementos cuja legenda está embutida na arte. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================================
+   Palco — o retângulo de 1620x2160 que todas as telas habitam
+   ========================================================================= */
+
+.stage-viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  /* As faixas laterais seguem o degradê do próprio fundo das artes. */
+  background: linear-gradient(
+    180deg,
+    var(--c-deep) 0%,
+    var(--c-mid) 55%,
+    var(--c-base) 100%
+  );
+}
+
+.stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--stage-w) * 1px);
+  height: calc(var(--stage-h) * 1px);
+  transform: translate(-50%, -50%) scale(var(--stage-scale, 1));
+  transform-origin: center center;
+}
+
+/* Aviso legal: mora no palco, e não nas telas, porque acompanha todas elas. */
+.stage__disclaimer {
+  position: absolute;
+  top: 2012px;
+  left: 222px;
+  width: 761px;
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 28.5px;
+  pointer-events: none;
+}
+
+/* =========================================================================
+   Boas-vindas — frame 1
+   ========================================================================= */
+
+.welcome {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.welcome__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.welcome__title {
+  position: absolute;
+  top: 307px;
+  left: 50%;
+  width: 1307px;
+  height: 154px;
+  transform: translateX(-50%);
+  font-size: 150px;
+  font-weight: 700;
+  line-height: 154px;
+  text-align: center;
+}
+
+.welcome__lead {
+  position: absolute;
+  top: 548px;
+  left: 50%;
+  width: 1043px;
+  transform: translateX(-50%);
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 80px;
+  text-align: center;
+}
+
+.welcome__lead--strong {
+  font-weight: 700;
+}
+
+.welcome__cta {
+  position: absolute;
+  top: 980px;
+  left: 50%;
+  width: 958px;
+  height: 380px;
+  transform: translateX(-50%);
+  cursor: pointer;
+  transition: transform 220ms ease;
+}
+
+.welcome__cta img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.welcome__cta:hover {
+  transform: translateX(-50%) scale(1.025);
+}
+
+.welcome__cta:active {
+  transform: translateX(-50%) scale(0.985);
+}
+
+.welcome__cta:focus-visible {
+  outline: 4px solid var(--c-ink);
+  outline-offset: -56px;
+  border-radius: 190px;
+}
+
+.welcome__hand {
+  position: absolute;
+  top: 1232px;
+  left: 0;
+  width: 840px;
+  height: 765px;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+/* =========================================================================
+   Pergunta — frame 2, repetido nas quatro perguntas
+   ========================================================================= */
+
+.question {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.question__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.question__eyebrow {
+  position: absolute;
+  left: 222px;
+  width: 1043px;
+  height: 86px;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 86px;
+}
+
+.question__text {
+  position: absolute;
+  left: 222px;
+  width: 1191px;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 73.5px;
+}
+
+.question__options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.question__option {
+  position: absolute;
+  left: 118px;
+  width: 1384px;
+  height: 400px;
+}
+
+.question__option-button {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 220ms ease;
+}
+
+.question__option-button img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.question__option-button:hover {
+  transform: scale(1.015);
+}
+
+.question__option-button:active {
+  transform: scale(0.99);
+}
+
+.question__option-button:focus-visible {
+  outline: 4px solid var(--c-ink);
+  outline-offset: -62px;
+  border-radius: 200px;
+}
+
+.question__option-label {
+  position: absolute;
+  top: 50%;
+  left: 311px;
+  width: 939px;
+  transform: translateY(-50%);
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 56px;
+  /* `\n` no rótulo marca a quebra de linha definida no design. */
+  white-space: pre-line;
+}
+
+/* =========================================================================
+   Calculando — frame 6
+   ========================================================================= */
+
+.loading {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.loading__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.loading__title {
+  position: absolute;
+  top: 729px;
+  left: 50%;
+  width: 1307px;
+  height: 154px;
+  transform: translateX(-50%);
+  font-size: 125px;
+  font-weight: 700;
+  line-height: 154px;
+  text-align: center;
+}
+
+/* Cápsula vazia com o brilho — a arte já inclui a borda e o halo. */
+.loading__track {
+  position: absolute;
+  top: 876px;
+  left: 229px;
+  width: 1166.24px;
+  height: 245.7px;
+  pointer-events: none;
+}
+
+/*
+ * Área útil interna da cápsula: recorta o preenchimento, para que a ponta
+ * direita acompanhe a curva da trilha ao chegar em 100%.
+ */
+.loading__bar {
+  position: absolute;
+  top: 930.39px;
+  left: 297.63px;
+  width: 1025.64px;
+  height: 134.12px;
+  border-radius: 67.06px;
+  overflow: hidden;
+}
+
+/*
+ * Degradê vertical idêntico ao do vetor do Figma
+ * (#79a8d3 → branco → #79a8d3, recortado pela altura da barra).
+ */
+.loading__fill {
+  width: 0;
+  height: 100%;
+  border-radius: 67.06px 0 0 67.06px;
+  background: linear-gradient(
+    180deg,
+    #b9d1e8 0%,
+    #ffffff 38.55%,
+    #8fb6da 100%
+  );
+}
+
+/* =========================================================================
+   Resultado — frame 7, repetido nas três faixas de risco
+   ========================================================================= */
+
+.result {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.result__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.result__score {
+  position: absolute;
+  top: 326px;
+  left: 222px;
+  width: 1153px;
+  font-size: 58px;
+  font-weight: 800;
+  line-height: 71px;
+}
+
+.result__score p {
+  margin-bottom: 18px;
+}
+
+.result__score p:last-child {
+  margin-bottom: 0;
+}
+
+/* Filete sob as duas primeiras linhas do score (largura vem do design). */
+.result__rule {
+  position: absolute;
+  left: 222px;
+  height: 2px;
+  background: var(--c-ink);
+}
+
+.result__headline {
+  position: absolute;
+  top: 652px;
+  left: 222px;
+  width: 1135px;
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 98px;
+}
+
+.result__body {
+  position: absolute;
+  top: 1066px;
+  left: 222px;
+  width: 1072px;
+  font-size: 55px;
+  font-weight: 400;
+  line-height: 67.375px;
+}
+
+/* Corpo menor inline: a chamada das referências (listadas na tela final) e
+   o subscrito de siglas como HbA1c. `line-height: 0` impede que o trecho
+   menor altere a altura da linha. */
+.result__reference,
+.result__subscript {
+  font-size: 35.475px;
+  line-height: 0;
+}
+
+.result__reference {
+  vertical-align: super;
+}
+
+.result__subscript {
+  vertical-align: sub;
+}
+
+.result__cta {
+  position: absolute;
+  top: 1786px;
+  left: 873px;
+  width: 718px;
+  height: 207px;
+  cursor: pointer;
+  transition: transform 220ms ease;
+}
+
+.result__cta img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.result__cta:hover {
+  transform: scale(1.025);
+}
+
+.result__cta:active {
+  transform: scale(0.985);
+}
+
+.result__cta:focus-visible {
+  outline: 4px solid var(--c-ink);
+  outline-offset: -28px;
+  border-radius: 104px;
+}
+
+/* =========================================================================
+   Obrigado — frame 10
+   ========================================================================= */
+
+.thanks {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.thanks__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.thanks__title {
+  position: absolute;
+  top: 583px;
+  left: 50%;
+  width: 1307px;
+  transform: translateX(-50%);
+  font-size: 125px;
+  font-weight: 700;
+  line-height: 150px;
+  text-align: center;
+}
+
+.thanks__cta {
+  position: absolute;
+  top: 847px;
+  left: 118px;
+  width: 1384px;
+  height: 400px;
+  cursor: pointer;
+  transition: transform 220ms ease;
+}
+
+.thanks__cta img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.thanks__cta:hover {
+  transform: scale(1.015);
+}
+
+.thanks__cta:active {
+  transform: scale(0.99);
+}
+
+.thanks__cta:focus-visible {
+  outline: 4px solid var(--c-ink);
+  outline-offset: -62px;
+  border-radius: 200px;
+}
+
+/* Único bloco de texto corrido do quiz: as quebras caem naturalmente
+   dentro da caixa, e não em pontos fixos como nas demais telas. */
+.thanks__references {
+  position: absolute;
+  top: 1669px;
+  left: 232px;
+  width: 1156px;
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 30px;
+  text-align: justify;
+}
+
+.thanks__references strong {
+  font-weight: 700;
+}
+
+.thanks__references cite {
+  font-style: italic;
+}

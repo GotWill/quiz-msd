@@ -2,7 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -13,9 +13,32 @@
       content="Autoavaliação de risco para diabetes tipo 2 — Dia Mundial do Combate ao Diabetes."
     />
     <title>Autoavaliação — Dia Mundial do Combate ao Diabetes</title>
+
+    <!-- As faces primeiro, para o texto não piscar na fonte de fallback. -->
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Scripts clássicos, sem `import`: cada arquivo declara no escopo global
+         o que o próximo usa, então a ORDEM abaixo importa — primeiro o helper
+         de DOM, depois os dados, as telas, o palco e enfim o fluxo do quiz.
+         É também o que permite abrir este arquivo direto do disco: módulos ES
+         exigiriam servir por http://. -->
+    <script src="js/dom.js"></script>
+
+    <script src="js/data/questions.js"></script>
+    <script src="js/data/results.js"></script>
+    <script src="js/data/references.js"></script>
+
+    <script src="js/screens/welcome.js"></script>
+    <script src="js/screens/question.js"></script>
+    <script src="js/screens/loading.js"></script>
+    <script src="js/screens/result.js"></script>
+    <script src="js/screens/thanks.js"></script>
+
+    <script src="js/stage.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
